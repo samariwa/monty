@@ -11,9 +11,9 @@ void line_separator(char **lines, char *buffer)
 {
 	char **temp, *cmd;
 	temp = lines;
-	piece - strtok(buf, "\n");
+	cmd = strtok(buffer, "\n");
 
-	while (piece != NULL)
+	while (cmd != NULL)
 	{
 		*temp++ = cmd;
 		cmd = strtok(NULL, "\n");
@@ -34,7 +34,7 @@ void space_separator(char **cmd, char *line)
 
 	word = strtok(line, " ");
 
-	while (piece != NULL)
+	while (word != NULL)
 	{
 		*temp++ = word;
 		word = strtok(NULL, " ");

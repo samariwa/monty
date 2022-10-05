@@ -7,17 +7,17 @@
  *
  * Return: nothing
  */
-void push(const int n, stack_t *head)
+int push(const int n, stack_t *head)
 {
 	stack_t *new_node = create_node(n);
 
-	if (*head != NULL)
+	if (head != NULL)
 	{
-		(*head)->prev = new_node;
+		head->prev = new_node;
 	}
 	
-	new_node->next = *head;
-	*head = new_node;
+	new_node->next = head;
+	head = new_node;
 
 	return (0);
 }
@@ -28,19 +28,19 @@ void push(const int n, stack_t *head)
  *
  * Return: nothing
  */
-void pop(stack_t **head)
+int pop(stack_t *head)
 {
-	stack_t temp = *head;
+	stack_t *temp = head;
 
-	if (*head == NULL)
+	if (head == NULL)
 	{
 		return (1);
 	}
 
 	temp = temp->next;
-	free(*head);
-	*head = temp;
-	(*head)->prev = NULL;
+	free(head);
+	head = temp;
+	head->prev = NULL;
 
 	return(0);
 }
@@ -52,18 +52,18 @@ void pop(stack_t **head)
  *
  * Return: 0 on success
  */
-int print_all(stack_t **head, const int n)
+int print_all(stack_t *head, const int n)
 {
 	size_t count = n;
 	stack_t *temp = head;
 
-	while (*head)
+	while (head)
 	{
-		printf("%d\n", head[0]->n);
-		*head = head[0]->next;
+		printf("%d\n", head->n);
+		head = head->next;
 		count++;
 	}
-	*head = temp;
+	head = temp;
 	return (0);
 }
 
