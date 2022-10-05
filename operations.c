@@ -46,6 +46,28 @@ void pop(stack_t **head)
 }
 
 /**
+ * print_all - prints all elements
+ * @head: the head of the list
+ * Description: n should be 0
+ *
+ * Return: 0 on success
+ */
+int print_all(stack_t **head, const int n)
+{
+	size_t count = n;
+	stack_t *temp = head;
+
+	while (*head)
+	{
+		printf("%d\n", head[0]->n);
+		*head = head[0]->next;
+		count++;
+	}
+	*head = temp;
+	return (0);
+}
+
+/**
  * create_node - creates a new node
  * @n: number to be added
  *
