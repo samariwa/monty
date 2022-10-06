@@ -35,14 +35,18 @@ typedef struct stack_s
 typedef struct instruction_s
 {
         char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+        int (*f)(stack_t **stack, const int line_number);
 } instruction_t;
 
+extern stack_t *head;
+int add(stack_t **head, const int n);
+int (*get_function(char *cmd))(stack_t **, const int);
 int _atoi(char *string);
+char *itoa(int val, int base);
 stack_t *create_node(int n);
-int print_all(stack_t *head, const int n);
-int pop(stack_t *head);
+int print_all(stack_t **head, const int n);
+int pop(stack_t **head,  const int n);
 void space_separator(char **cmd, char *line);
-int push(int n, stack_t *head);
+int push(stack_t **head, const int n);
 void line_separator(char **lines, char *buffer);
 #endif

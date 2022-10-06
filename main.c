@@ -3,8 +3,9 @@
 int main(int argc, char **argv)
 {
 	char *file, *buffer, *line_buffer[100], *cmd_buffer[2];
-	int fd, i = 0, n = 0;
+	int fd, i = 0, n = 0, (*operation)(stack_t **head, const int n);
 	ssize_t bytes;
+	stack_t *head = NULL;
 
 	if (argc != 2)
 	{
@@ -42,8 +43,18 @@ int main(int argc, char **argv)
 		{
 			n = _atoi(cmd_buffer[i]);
 		}
-		printf("%d\n", n);
+		if (get_function(cmd_buffer[0]) != NULL)
+		{
+			operation = get_function(cmd_buffer[0]);
+			operation(&head, n);
+		}
+		else
+		{
+			fprintf(stderr, "L%d: unknown instruction %s\n", i, cmd_buffer[0]);
+		}
+		cmd_buffer[0] = NULL;
+		cmd_buffer[1] = NULL;
 		i++;
 	}
-
+	return (0);
 }
