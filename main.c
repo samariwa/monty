@@ -37,12 +37,15 @@ int main(int argc, char **argv)
 
 	while (line_buffer[i] != NULL)
 	{
+		printf("%s\n", line_buffer[i]);
 		space_separator(cmd_buffer, line_buffer[i]);
+		printf("%s\n%s", cmd_buffer[0], cmd_buffer[1]);
 
 		if (cmd_buffer[1] != NULL)
 		{
-			n = _atoi(cmd_buffer[i]);
+			n = _atoi(cmd_buffer[1]);
 		}
+
 		if (get_function(cmd_buffer[0]) != NULL)
 		{
 			operation = get_function(cmd_buffer[0]);
